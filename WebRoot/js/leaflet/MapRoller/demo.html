@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<!--	<link rel="stylesheet" href="leaflet.draw.css" />-->
+		<link rel="stylesheet" href="Leaflet.MapRoller.css" />
+        <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+        <!--<script src="leaflet.draw.js"></script>-->
+        <script src="Leaflet.MapRoller.js"></script>
+		<title>地图卷帘Demo</title>
+		<style type="text/css">
+			html,body{
+				width:100%;height:100%;margin: 0px;padding: 0px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map" style="width:100%;height:100%;">	</div>
+	</body>
+	<script type="text/javascript">
+		
+       
+        baseConfig = {
+			base1: L.tileLayer('http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetGray/MapServer/tile/{z}/{y}/{x}'),
+			base2: L.tileLayer('http://services.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+			base3: L.tileLayer('http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineStreetColor/MapServer/tile/{z}/{y}/{x}'),
+			//高德
+            base4:L.tileLayer('http://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', { subdomains: "1234" }),
+            //高德影像
+            base5:L.tileLayer('http://webst0{s}.is.autonavi.com/appmaptile?style=6&x={x}&y={y}&z={z}', { subdomains: "1234" }),
+            //谷歌地图
+            base6:L.tileLayer('http://mt1.google.cn/vt/lyrs=m@207000000&hl=zh-CN&gl=CN&src=app&x={x}&y={y}&z={z}&s=Galile'),
+            //GeoQ
+            base7:L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}'),
+            //GeoQ藏蓝
+            base8:L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}'),
+            //GeoQ灰
+            base9:L.tileLayer('http://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetGray/MapServer/tile/{z}/{y}/{x}'),
+            //谷歌影像
+            base10:L.tileLayer('http://mt1.google.cn/vt/lyrs=s&hl=zh-CN&gl=CN&x={x}&y={y}&z={z}&s=Gali')
+		};
+		
+		 var map= L.map('map',{
+            zoomControl:false,
+            layers: [baseConfig.base2, baseConfig.base4,baseConfig.base8]
+        }).setView([35.8, 109.5], 7);
+		
+		var soller=new L.Control.MapRoller();
+		map.addControl(soller);
+	</script>
+</html>
